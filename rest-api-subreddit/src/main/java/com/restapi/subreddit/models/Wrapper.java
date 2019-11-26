@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 @JsonRootName("children")
 public class Wrapper {
 
+
   public SubReddit data;
 
   @JsonProperty("data")

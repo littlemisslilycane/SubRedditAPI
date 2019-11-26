@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.restapi.subreddit.models.SubReddit;
 import com.restapi.subreddit.models.Wrapper;
+import com.restapi.subreddit.util.HTTPFetcher;
 
 import org.springframework.stereotype.Service;
 
@@ -13,33 +14,27 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import javax.xml.ws.http.HTTPBinding;
+
 @Service
 public class SubRedditService {
 
-public void getSubReddit(SubReddit subReddit){
-  ObjectMapper mapper = new ObjectMapper();
-  try {
-    URL url = new URL("https://www.reddit.com/r/news/.json?20");
-    HttpURLConnection request = (HttpURLConnection) url.openConnection();
-    request.setRequestMethod("GET");
-    request.setRequestProperty("User-Agent",
-            "Mozilla/5.0 (Windows NT 5.1; rv:19.0) Gecko/20100101 Firefox/19.0");
-    System.out.println(request.getContentType());
-    BufferedReader serverResponse = new BufferedReader(
-            new InputStreamReader(request.getInputStream()));
-    String json = serverResponse.readLine();
+  public Wrapper getSubReddit(String name) {
+    ObjectMapper mapper = new ObjectMapper();
 
-    ObjectMapper objectMapper = new ObjectMapper();
+    try {
+      HTTPFetcher fetcher = new HTTPFetcher("https://www.reddit.com/r/" + name + "/" +
+              ".json?limit=10");
+      String response = fetcher.getResponse();
+      ObjectMapper objectMapper = new ObjectMapper();
+      JsonNode root =
+              objectMapper.readTree(response).get("data").get("children");
+      Wrapper[] myObject = mapper.treeToValue(root, Wrapper[].class);
+      return myObject[0];
 
-
-    JsonNode root =
-            objectMapper.readTree(json).get("data").get("children");
-    Wrapper[] myObject = mapper.treeToValue(root, Wrapper[].class);
-    System.out.println(myObject.toString());
-
-
-  } catch (IOException e) {
-    e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
-}
 }

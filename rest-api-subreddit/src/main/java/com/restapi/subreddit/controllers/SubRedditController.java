@@ -1,5 +1,7 @@
 package com.restapi.subreddit.controllers;
 
+import com.restapi.subreddit.models.SubReddit;
+import com.restapi.subreddit.models.Wrapper;
 import com.restapi.subreddit.services.SubRedditService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,14 @@ public class SubRedditController {
   @Autowired
   private SubRedditService subRedditService;
 
+  public SubRedditController() {
+    subRedditService = new SubRedditService();
+  }
+
   @GetMapping("/subreddit/{name}")
-  public String getsubreddit(@PathVariable("name") String name) {
-    return "hello";
+  public Wrapper getsubreddit(@PathVariable("name") String name) {
+    Wrapper obj = subRedditService.getSubReddit(name);
+    return obj;
   }
 
 }
