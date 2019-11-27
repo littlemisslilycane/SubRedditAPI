@@ -15,7 +15,11 @@ These instructions will get you a copy of the project up and running on your loc
 3)Apache Maven 3.6.2
 
 ### Deployment
-Hosted in Amazon AWS at the URL : subredditrestapi.us-east-1.elasticbeanstalk.com
+Hosted in Amazon AWS at the URL : 
+http://subredditrestapi.us-east-1.elasticbeanstalk.com
+
+Example: http://subredditrestapi.us-east-1.elasticbeanstalk.com/subreddit/news
+
 
 
 ## Running it locally
