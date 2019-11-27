@@ -18,7 +18,23 @@ These instructions will get you a copy of the project up and running on your loc
 Hosted in Amazon AWS at the URL : subredditrestapi.us-east-1.elasticbeanstalk.com
 
 
-## Installation instructions
+## Running it locally
+Steps:
+On the command line
+git clone https://github.com/littlemisslilycane/SubRedditAPI.git
+Inside Eclipse or STS
+File -> Import -> Maven -> Existing Maven project
+Then either build on the command line ./mvnw generate-resources or using the Eclipse launcher (right click on project and Run As -> Maven install) to generate the css. Run the application main method by right clicking on it and choosing Run As -> Java Application.
+
+Inside IntelliJ IDEA
+In the main menu, choose File -> Open and select the pom.xml. Click on the Open button.
+
+Click Maven -> Generates sources and Update Folders.
+
+A run configuration named Application should have been created for you if you're using a recent Ultimate version. Otherwise, run the application by right clicking on the Application main class and choosing Run 'Application'.
+
+
+Visit http://localhost:8080/subreddit/<name> in your browser.
 
 
 ## How the API works
