@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonRootName("data")
 public class SubReddit {
 
   private String id;
