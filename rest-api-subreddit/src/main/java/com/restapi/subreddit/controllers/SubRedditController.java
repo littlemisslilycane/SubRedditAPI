@@ -1,7 +1,6 @@
 package com.restapi.subreddit.controllers;
 
 import com.restapi.subreddit.models.SubReddit;
-import com.restapi.subreddit.models.Wrapper;
 import com.restapi.subreddit.services.SubRedditServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;

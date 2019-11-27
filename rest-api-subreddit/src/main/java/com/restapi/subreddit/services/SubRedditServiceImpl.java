@@ -4,14 +4,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.restapi.subreddit.errors.RedditNotFoundException;
 import com.restapi.subreddit.models.SubReddit;
-import com.restapi.subreddit.models.Wrapper;
 import com.restapi.subreddit.util.HTTPFetcher;
 
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
