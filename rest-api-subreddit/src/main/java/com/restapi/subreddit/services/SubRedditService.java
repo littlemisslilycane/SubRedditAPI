@@ -2,19 +2,13 @@ package com.restapi.subreddit.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.restapi.subreddit.models.SubReddit;
+import com.restapi.subreddit.errors.RedditNotFoundException;
 import com.restapi.subreddit.models.Wrapper;
 import com.restapi.subreddit.util.HTTPFetcher;
 
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-import javax.xml.ws.http.HTTPBinding;
 
 @Service
 public class SubRedditService {
@@ -27,13 +21,21 @@ public class SubRedditService {
               ".json?limit=10");
       String response = fetcher.getResponse();
       ObjectMapper objectMapper = new ObjectMapper();
+
+
       JsonNode root =
               objectMapper.readTree(response).get("data").get("children");
+      if (root.size() == 0) {
+        throw new RedditNotFoundException("The entered sub-reddit" + name +
+                " is not" +
+                " found.");
+      }
       Wrapper[] myObject = mapper.treeToValue(root, Wrapper[].class);
       return myObject[0];
 
+
     } catch (IOException e) {
-      e.printStackTrace();
+
     }
     return null;
   }
