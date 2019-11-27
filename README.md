@@ -1,6 +1,6 @@
-# SubRedditAPI - Web Exercise
 
-# Project Title
+
+# SubRedditAPI - Web Exercise
 
 This RESI API application acts like a wrapper for the /r/subreddit API call. Given a subreddit name it returns the list of articles under it as JSON object.
 
